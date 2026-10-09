@@ -1,0 +1,13 @@
+{
+  "configurations": [{
+    "name": "OF",
+    "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
+    "cppStandard": "c++17",
+    "intelliSenseMode": "windows-gcc-x64",
+    "includePath": [
+      "${workspaceFolder}/src",
+      "C:/of/**"
+    ]
+  }],
+  "version": 4
+}
