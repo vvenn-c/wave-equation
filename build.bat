@@ -14,7 +14,7 @@ echo Building...
 
 g++ -std=c++17 -g -Wall -Wno-unknown-pragmas ^
   src/*.cpp ^
-  -o bin/main.exe ^
+  -o bin/wave-equation.exe ^
   -IC:/of/libs/openFrameworks ^
   -IC:/of/libs/openFrameworks/app ^
   -IC:/of/libs/openFrameworks/gl ^
@@ -91,5 +91,5 @@ if errorlevel 1 (
 )
 
 echo.
-echo Build succeeded: bin\main.exe
+echo Build succeeded: bin\wave-equation.exe
 endlocal

@@ -5,7 +5,7 @@
       "name": "Run",
       "type": "cppvsdbg",
       "request": "launch",
-      "program": "${workspaceFolder}\\bin\\main.exe",
+      "program": "${workspaceFolder}\\bin\\wave-equation.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
