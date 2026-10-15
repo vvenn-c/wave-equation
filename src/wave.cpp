@@ -5,13 +5,13 @@ ofColor inferno(float t) {
     t = ofClamp(t, 0.0f, 1.0f);
 
     static const ofFloatColor stops[] = {
-        ofFloatColor(0.001f, 0.000f, 0.014f), // 0.00 near-black
-        ofFloatColor(0.259f, 0.038f, 0.406f), // 0.17 deep purple
-        ofFloatColor(0.578f, 0.148f, 0.404f), // 0.33 magenta-purple
-        ofFloatColor(0.865f, 0.317f, 0.226f), // 0.50 red-orange
-        ofFloatColor(0.987f, 0.645f, 0.040f), // 0.67 orange
-        ofFloatColor(0.950f, 0.930f, 0.350f), // 0.83 yellow
-        ofFloatColor(0.988f, 1.000f, 0.644f)  // 1.00 pale yellow
+        ofFloatColor(0.001f, 0.000f, 0.014f),
+        ofFloatColor(0.259f, 0.038f, 0.406f),
+        ofFloatColor(0.578f, 0.148f, 0.404f),
+        ofFloatColor(0.865f, 0.317f, 0.226f),
+        ofFloatColor(0.987f, 0.645f, 0.040f),
+        ofFloatColor(0.950f, 0.930f, 0.350f),
+        ofFloatColor(0.988f, 1.000f, 0.644f)
     };
 
     const int n = 7;
@@ -37,10 +37,10 @@ WaveObject::WaveObject(int divisions, float speedOfPropogation) {
     for (int i = 0; i <= div - 1; i++) {
         for (int j = 0; j <= div - 1; j++) {
 
-            int a = i * (div + 1) + j;         // (i,   j)
-            int b = (i + 1) * (div + 1) + j;   // (i+1, j)
-            int c = (i + 1) * (div + 1) + j + 1; // (i+1, j+1)
-            int d = i * (div + 1) + j + 1;     // (i,   j+1)
+            int a = i * (div + 1) + j;  
+            int b = (i + 1) * (div + 1) + j;
+            int c = (i + 1) * (div + 1) + j + 1;
+            int d = i * (div + 1) + j + 1;
 
             mesh.addIndex(a); mesh.addIndex(b); mesh.addIndex(c);
             mesh.addIndex(a); mesh.addIndex(c); mesh.addIndex(d);
@@ -57,12 +57,16 @@ void WaveObject::update() {
 
     float timeNormalizer = (1.f / 144) * frequency;
 
-    acc = -pos * 1;
-    vel += acc * timeNormalizer;
-    pos += vel * timeNormalizer;
+    if (paused == false) {
 
-    if (paused == false && frequency > 0) U[div - 30][75] = pos;
-    if (paused == false && frequency > 0) U[div - 30][div - 75] = pos;
+        acc = -pos * 1;
+        vel += acc * timeNormalizer;
+        pos += vel * timeNormalizer;
+
+        if (frequency > 0) U[div - 30][75] = pos;
+        if (frequency > 0) U[div - 30][div - 75] = pos;
+
+    }
 
     ofSetColor(255);
     ofDrawSphere(div - 30, 75, 5);
@@ -136,8 +140,8 @@ float WaveObject::getLaplacian(int x, int y) {
 
 float WaveObject::damping(int x, int y) {
 
-    const int thickness = 20;
-    const float coeffDamping = 100.f;
+    const int thickness = 30;
+    const float coeffDamping = 150.f;
 
     int dist = std::min({x, div - x, y, div - y});
     if (dist >= thickness) return 0.f;

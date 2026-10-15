@@ -14,7 +14,7 @@ class Engine : public ofBaseApp {
         float camSpeed = 3 / camZoom;
         float originalDt = dt;
 
-        WaveObject wave = WaveObject(200, 1000);
+        WaveObject wave = WaveObject(200, 2000);
 
         void setup() override {
             
@@ -84,7 +84,7 @@ class Engine : public ofBaseApp {
 
                 wave.render();
 
-             cam.end();
+            cam.end();
 
             // ========== //
 
@@ -130,6 +130,7 @@ class Engine : public ofBaseApp {
             if (key == ',') wave.frequency--;
 
             if (wave.frequency < 0) wave.frequency = 0;
+            if (wave.frequency > 270) wave.frequency = 270;
 
             if (key == 'p') {
 
