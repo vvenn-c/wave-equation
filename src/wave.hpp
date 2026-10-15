@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <bits/stdc++.h>
 
 #include "global.hpp"
 
@@ -7,25 +8,25 @@ class WaveObject {
 
     private:
 
-        // scalar field
-        std::vector<std::vector<float>> U;
+        std::vector<std::vector<float>> U; // scalar field
+        std::vector<std::vector<float>> V; // velocity field(?)
+        float c; // speed of propogation
 
-        int res, sideLength;
-        int cellSize;
+        int div; // number of discrete elements in the field per axis
+        int ds; // unit size of each division
+
+        float getLaplacian(int x, int y);
+        float damping(int x, int y);
+
+        ofMesh mesh;
 
     public:
 
-        WaveObject(int resolution) {
-
-            this->res = resolution;
-            this->cellSize = 1000 / this->res;
-            this->sideLength = (1000 / this->cellSize) + 1;
-
-            U.assign(this->sideLength, std::vector<float>(this->sideLength, 0.f));
-
-        }
+        WaveObject(int resolution, float speedOfPropogation);
 
         void update();
         void render();
+
+        int frequency = 0;
 
 };

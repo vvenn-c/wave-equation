@@ -9,6 +9,11 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "bin/wave-equation.exe",
         }
     ],
     "presentation": {

@@ -7,4 +7,6 @@ inline unsigned int HEIGHT = 720;
 
 inline ofTrueTypeFont font;
 
-const inline float dt = 1.f / (60 * 10);
+inline float dt = 1.f / (60 * 10);
+
+inline bool paused = false;
